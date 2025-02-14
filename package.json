@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://emfkrhwhem1.github.io/PortPolio/",
+  "homepage": "https://emfkrhwhem1.github.io/emfkrhwhem1.github.io/",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
