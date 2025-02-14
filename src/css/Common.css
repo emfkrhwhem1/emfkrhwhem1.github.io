@@ -1,0 +1,26 @@
+:root {
+    --bg-color: #1e2022;
+}
+
+.BaseFrame {
+    padding: 0px 5%;
+    background: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+}
+
+.body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.bodyFrame{
+    flex: 1;
+    padding: 0px 5%;
+    background: var(--bg-color);
+}
+
+* {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif !important;
+}

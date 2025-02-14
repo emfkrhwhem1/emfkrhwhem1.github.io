@@ -1,0 +1,13 @@
+.HeaderFrame {
+    display: flex;
+    justify-content: space-around;
+    height: 84px;
+    align-items: center;
+}
+
+.Header--Text{
+    color: #F5F5F5;
+    font-size: 26px;
+    font-weight: 700;
+    cursor: pointer;
+}
