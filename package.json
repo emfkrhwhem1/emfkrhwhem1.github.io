@@ -7,9 +7,11 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "pnpm dlx gh-pages -d dist"
   },
   "dependencies": {
+    "gh-pages": "link:gh-pages",
     "lucide-react": "^1.14.0",
     "motion": "^12.38.0",
     "react": "^19.2.6",

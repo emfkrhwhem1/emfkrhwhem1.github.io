@@ -1,4 +1,3 @@
-import React from "react";
 import ExperienceCard from "@/components/ExperienceCard";
 import StepPage from "@/components/StepPage";
 

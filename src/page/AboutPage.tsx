@@ -1,8 +1,7 @@
-import React from "react";
 import AboutCard from "@/components/AboutCard";
 import StepPage from "@/components/StepPage";
 import { Code2, Heart, Palette, Zap } from "lucide-react";
-import { motion } from "motion/react";
+import { motion, Variants } from "motion/react";
 
 const CardList = [
   {
@@ -36,12 +35,15 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
+    transition: {
+      duration: 0.5,
+      ease: "easeOut", // 이제 에러가 나지 않습니다.
+    },
   },
 };
 

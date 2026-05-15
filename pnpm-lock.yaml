@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  gh-pages:
+    specifier: link:gh-pages
+    version: link:gh-pages
   lucide-react:
     specifier: ^1.14.0
     version: 1.14.0(react@19.2.6)
