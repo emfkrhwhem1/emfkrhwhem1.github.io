@@ -1,0 +1,74 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* 1. 폰트 설정 (format 수정 완료) */
+@font-face {
+  font-family: "Pretendard Variable";
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+  src: url("./assets/fonts/PretendardVariable.woff2") format("woff2-variations");
+}
+
+@font-face {
+  font-family: "Fira Code";
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+  /* .ttf 파일에 맞게 format 수정 */
+  src: url("./assets/fonts/FiraCode-VariableFont_wght.ttf")
+    format("truetype-variations");
+}
+@font-face {
+  font-family: "GmarketSansTTFMedium";
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+  /* .ttf 파일에 맞게 format 수정 */
+  src: url("./assets/fonts/GmarketSansTTFMedium.ttf")
+    format("truetype-variations");
+}
+
+/* 2. 테일윈드 테마 설정 (중복 제거 및 통합) */
+@theme {
+  --spacing-BasePx: 5%;
+  --font-sans:
+    "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+    system-ui, Roboto, sans-serif;
+  --font-fira: "Fira Code", monospace;
+  --font-gmarket: "GmarketSansTTFMedium", monospace;
+
+  /* Color */
+  --color-primary: #030014;
+  --color-accent: oklch(0.7 0.25 320);
+  --color-glow: oklch(0.6 0.2 300);
+  --color-purple: #7562e2;
+  --color-slate-light: #d6e1ff;
+  --color-slate: #94a3ca;
+  --shadow-neon:
+    0px 0px 40px -5px rgba(168, 85, 247, 0.4),
+    0px 0px 80px -10px rgba(236, 72, 153, 0.2);
+}
+
+/* 4. 전역 기본 스타일 */
+@layer base {
+  body {
+    background-color: var(--color-primary);
+    color: var(--color-slate);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --spacing-BasePx: 10%; /* 태블릿 */
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --spacing-BasePx: 15%; /* 데스크탑 */
+  }
+}

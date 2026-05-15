@@ -1,0 +1,131 @@
+export interface ProjectType {
+  title: string;
+  description: string;
+  imageSrc: string;
+  period: string;
+  contributionRole: string;
+  techStack: string[];
+  contributions: string[];
+}
+
+const data: ProjectType[] = [
+  {
+    title: "가게로 (관리자 페이지)",
+    description: "위치 기반으로 할인하는 상점을 검색하는 서비스 사이트입니다.",
+    imageSrc: "src/assets/images/1.png",
+    period: "2021.08 - 2021.10 (3개월)",
+    contributionRole: "퍼블리싱 (100%)",
+    techStack: ["Vue.js", "Scss", "Git", "Vuetify"],
+    contributions: [
+      "전체 페이지의 UI/UX 디자인 구현 및 퍼블리싱 작업을 진행",
+      "Vue.js와 Vuetify를 활용한 컴포넌트 기반 개발 및 Scss를 이용한 일관된 디자인 시스템 구축",
+      "핵심 페이지는 반응형 디자인으로 개발",
+      "카카오/애플 소셜 로그인 인증 시스템 구현",
+    ],
+  },
+  {
+    title: "DGB 어울림",
+    description: "DGB금융그룹의 임직원들을 위한 통합 소통 플랫폼 웹앱입니다.",
+    imageSrc: "src/assets/images/2.png",
+    period: "2021.10 - 2021.12 (3개월)",
+    contributionRole: "프론트엔드 개발 (40%)",
+    techStack: ["Vue.js", "Scss", "Vuetify", "Axios", "Vuex", "Git"],
+    contributions: [
+      "Vue.js 기반의 안드로이드 앱 전용 웹뷰 UI/UX 구현",
+      "UI 프레임워크 Vuetify 사용",
+      "Axios 비동기 통신으로 API 연동",
+    ],
+  },
+  {
+    title: "뷰아미 (사용자, 관리자 페이지)",
+    description:
+      "맞춤형 화장품 추천과 뷰티 정보를 한곳에서 만나볼 수 있는 종합 뷰티 플랫폼 사이트입니다.",
+    imageSrc: "src/assets/images/3.png",
+    period: "2021.12 - 2022.04 (5개월)",
+    contributionRole: "프론트엔드 개발 (100%)",
+    techStack: ["Vue.js", "Scss", "Vuetify", "Axios", "Vuex", "Git"],
+    contributions: [
+      "고객용 서비스 페이지와 관리자 대시보드 페이지를 포함한 전체 프론트엔드 시스템 설계 및 개발",
+      "뷰티 제품 쇼츠 형식의 커스텀 비디오 플레이어 개발 (제품 타임라인 네비게이션, 인터랙티브 UI/UX 구현)",
+      "다중 소셜 로그인(네이버, 카카오, 구글) 통합 인증 시스템 구현",
+    ],
+  },
+  {
+    title: "온트피아 가상갤러리",
+    description:
+      "온라인 상에서 예술 작품을 전시하고 감상할 수 있는 가상 갤러리 사이트입니다.",
+    imageSrc: "src/assets/images/4.png",
+    period: "2022.04 - 2023.01 (10개월)",
+    contributionRole: "프론트엔드 (100%), 백엔드 개발 (40%)",
+    techStack: [
+      "Vue.js",
+      "Scss",
+      "Vuetify",
+      "Axios",
+      "Vuex",
+      "Spring Boot",
+      "Git",
+    ],
+    contributions: [
+      "iframe을 활용한 Unity3D-Vue.js 웹 애플리케이션 통합 구현",
+      "PC, 모바일 반응형 웹 디자인 퍼블리싱",
+      "카카오맵 API 연동을 통한 위치 기반 서비스 구현",
+      "Spring Boot로 일부 API 설계 및 제작",
+    ],
+  },
+  {
+    title: "스마트팜 (팜넷)",
+    description:
+      "농가의 환경 및 작물 상태를 실시간으로 모니터링하고 제어할 수 있는 스마트 농업 시스템 사이트입니다.",
+    imageSrc: "src/assets/images/5.png",
+    period: "2022.08 - 2022.10 (3개월)",
+    contributionRole: "프론트엔드 개발 (100%)",
+    techStack: ["Vue.js", "Scss", "Vuetify", "Axios", "Vuex", "i18n", "Git"],
+    contributions: [
+      "모바일 반응형 웹 디자인 퍼블리싱",
+      "카카오 지도 API 연동, 위치 기반 마커 시스템",
+      "터치 제스처 인터랙션 지원",
+      "i18n 라이브러리로 다국어 처리",
+    ],
+  },
+  {
+    title: "대구 어르신 통합무임 교통카드",
+    description:
+      "대구시에서 시행되는 어르신 무임교통 통합 발급 시스템 사이트입니다.",
+    imageSrc: "src/assets/images/6.png",
+    period: "2023.05 - 2024.02 (10개월)",
+    contributionRole: "프론트엔드 유지 보수 및 기능 추가 (100%)",
+    techStack: ["Vue.js", "Scss", "Axios", "Vanilla JS", "Vuex", "SVN"],
+    contributions: [
+      "Vue.js 프로젝트와 Vanilla JS 프로젝트 유지보수 및 추가 기능 개발",
+      "원격 및 서비스 대응",
+      "관리자 요구사항 분석을 통한 맞춤형 필터링 시스템 개발 및 구현",
+    ],
+  },
+  {
+    title: "포항 디지털트윈 플랫폼",
+    description:
+      "포항시 전역의 안전 데이터를 실시간으로 모니터링하고 시각화하는 디지털 트윈 기반 거버넌스 플랫폼입니다.",
+    imageSrc: "src/assets/images/8.png",
+    period: "2025.04 - 2025.9 (6개월)",
+    contributionRole: "프론트엔드 개발 (100%)",
+    techStack: [
+      "React",
+      "JavaScript",
+      "Styled-Component",
+      "MUI",
+      "Axios",
+      "Zustand",
+      "Framer-Motion",
+    ],
+    contributions: [
+      "React 라이브러리 및 JavaScript 기반으로 제작",
+      "Styled-Component로 css 및 MUI 컴포넌트를 이용해 페이지 퍼블리싱",
+      "OWASP Top 10 지침을 준수하여 XSS 및 CSRF 등 주요 웹 보안 취약점을 방어하는 시큐어 코딩 적용",
+      "다양한 모바일 기기 및 해상도에 최적화된 인터페이스를 위해 미디어 쿼리 기반의 반응형 레이아웃 구현",
+      "Lighthouse 성능 지표를 바탕으로 WebP 이미지 포맷 변환 및 Lazy Loading을 적용하여 로딩 속도 개선",
+    ],
+  },
+];
+
+export default data;
