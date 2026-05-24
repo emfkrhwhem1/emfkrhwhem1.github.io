@@ -62,10 +62,10 @@ const experiences = [
 function ExperiencePage() {
     return (_jsx(StepPage, { stepNumber: 2, title: "Experience", children: _jsxs("div", { className: "relative w-full max-w-6xl mx-auto px-4 py-10", children: [_jsx("div", { className: "hidden lg:block absolute left-1/2 top-0 bottom-0 w-[2px] bg-white/10 -translate-x-1/2 z-0" }), _jsx("div", { className: "flex flex-col gap-10 xl:gap-24 relative z-10", children: experiences.map((exp, index) => {
                         const isRightAligned = index % 2 !== 0;
-                        return (_jsxs("div", { className: `relative flex w-full items-center 
-                  /* 모바일: 가로 중앙 정렬 / PC(md): 지그재그 정렬 */
-                  justify-center md:${isRightAligned ? "justify-end" : "justify-start"}
-                `, children: [_jsx("div", { className: "hidden lg:block absolute left-1/2 top-1/2 w-4 h-4 rounded-full bg-purple -translate-x-1/2 -translate-y-1/2 ring-4 ring-[#030014] z-20 shadow-[0_0_15px_rgba(168,85,247,0.5)]" }), _jsx("div", { className: "w-full lg:w-[45%] lg:w-[42%]", children: _jsx(ExperienceCard, { ...exp }) })] }, index));
+                        return (_jsxs("div", { className: `relative flex w-full items-center justify-center 
+        /* ✅ md: 또는 lg: 접두사를 삼항 연산자 안으로 넣어야 정확히 작동합니다 */
+        ${isRightAligned ? "md:justify-end" : "md:justify-start"}
+      `, children: [_jsx("div", { className: "hidden lg:block absolute left-1/2 top-1/2 w-4 h-4 rounded-full bg-purple -translate-x-1/2 -translate-y-1/2 ring-4 ring-[#030014] z-20 shadow-[0_0_15px_rgba(168,85,247,0.5)]" }), _jsx("div", { className: "w-full lg:w-[45%]", children: _jsx(ExperienceCard, { ...exp }) })] }, index));
                     }) })] }) }));
 }
 export default ExperiencePage;

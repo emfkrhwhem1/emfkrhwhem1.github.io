@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Calendar,
   User,
+  Users, // 작업 인원 아이콘 추가
   Code2,
   CheckCircle2,
   Maximize2,
@@ -14,6 +15,7 @@ interface ProjectProps {
   imageSrc: string;
   period: string;
   contributionRole: string;
+  memberCount: number; // 작업 인원 필드 추가 (예: "1명" 또는 "4명")
   techStack: string[];
   contributions: string[];
 }
@@ -24,23 +26,35 @@ const ProjectCard = ({
   imageSrc,
   period,
   contributionRole,
+  memberCount,
   techStack,
   contributions,
 }: ProjectProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // 모달 상태에 따른 배경 스크롤 차단 로직
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = "hidden";
+      document.body.style.touchAction = "none";
+    } else {
+      document.body.style.overflow = "unset";
+      document.body.style.touchAction = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "unset";
+      document.body.style.touchAction = "auto";
+    };
+  }, [isModalOpen]);
+
   return (
     <>
       <div className="group relative transition-all duration-300 mb-12">
-        {/* 배경 그라데이션 - 모바일에서는 조금 더 은은하게 */}
+        {/* 배경 그라데이션 */}
         <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-blue-500/10 opacity-30 md:opacity-50 group-hover:opacity-70 transition-opacity rounded-3xl" />
 
         <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-[#1a1a1a]/80 backdrop-blur-xl p-5 md:p-10 shadow-2xl">
-          {/* 
-            Grid 레이아웃: 
-            - 기본(모바일): 1열 (이미지 위, 텍스트 아래)
-            - lg(데스크탑): 5열 중 2열(이미지) : 3열(텍스트) 비율 유지
-          */}
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 md:gap-10 items-start">
             {/* 왼쪽/상단: 프로젝트 이미지 섹션 */}
             <div className="lg:col-span-2 space-y-4 relative w-full">
@@ -51,8 +65,7 @@ const ProjectCard = ({
                   className="w-full h-full object-contain transition-transform duration-700 group-hover/img:scale-110"
                 />
 
-                {/* 확대 버튼: 모바일에서는 항상 보이거나 터치하기 쉬운 크기로 유지 (선택사항) 
-                    여기서는 hover가 없는 모바일 환경을 고려해 opacity-0 md:group-hover/img:opacity-100 로 대응 */}
+                {/* 확대 버튼 (데스크탑) */}
                 <div className="absolute inset-0 bg-black/40 opacity-0 md:group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <button
                     onClick={() => setIsModalOpen(true)}
@@ -63,7 +76,7 @@ const ProjectCard = ({
                   </button>
                 </div>
 
-                {/* 모바일용 탭 가이드 (터치 환경 대응) */}
+                {/* 확대 버튼 (모바일 전용) */}
                 <button
                   onClick={() => setIsModalOpen(true)}
                   className="absolute top-3 right-3 p-2 bg-black/50 backdrop-blur-md rounded-full text-white md:hidden"
@@ -72,15 +85,44 @@ const ProjectCard = ({
                 </button>
               </div>
 
-              {/* 프로젝트 메타 정보: 모바일에서 텍스트 크기 및 패딩 조절 */}
-              <div className="grid grid-cols-2 gap-3 text-[12px] md:text-sm">
-                <div className="flex items-center gap-2 text-gray-400 bg-white/5 p-2.5 md:p-3 rounded-xl border border-white/5">
+              {/* 프로젝트  타 정보 (3열 그리드로 수정) */}
+              {/* 프로젝트 메타 정보 */}
+              <div className="flex flex-wrap items-center gap-2 text-[12px] md:text-xs lg:text-sm w-full">
+                {/* 1. 기간 */}
+                <div className="flex items-center gap-2 text-gray-400 bg-white/5 px-3.5 py-2.5 rounded-xl border border-white/5 min-w-max">
                   <Calendar className="w-3.5 h-3.5 md:w-4 md:h-4 text-purple-400 shrink-0" />
-                  <span className="">{period}</span>
+                  <span className="whitespace-nowrap">{period}</span>
                 </div>
-                <div className="flex items-center gap-2 text-gray-400 bg-white/5 p-2.5 md:p-3 rounded-xl border border-white/5">
+
+                {/* 2. 수행 역할 (글자가 길어도 박스가 알아서 늘어남) */}
+                <div className="flex items-center gap-2 text-gray-400 bg-white/5 px-3.5 py-2.5 rounded-xl border border-white/5 min-w-max">
                   <User className="w-3.5 h-3.5 md:w-4 md:h-4 text-blue-400 shrink-0" />
-                  <span className="">{contributionRole}</span>
+                  <span className="whitespace-nowrap">{contributionRole}</span>
+                </div>
+
+                {/* 3. 작업 인원 (memberCount가 정상 바인딩됨) */}
+                <div className="flex items-center gap-2 text-gray-400 bg-white/5 px-3.5 py-2.5 rounded-xl border border-white/5 min-w-max">
+                  {/* 메인 그룹 아이콘 */}
+                  <Users className="w-3.5 h-3.5 md:w-4 md:h-4 text-emerald-400 shrink-0" />
+
+                  {/* 인원수 글자 표기 */}
+                  <span className="text-xs text-gray-400 mr-1">참여 인원</span>
+
+                  {/* 데이터 기반으로 사람 아이콘 배열을 동적 생성하여 렌더링 */}
+                  <div className="flex items-center gap-0.5">
+                    {Array.from({ length: Number(memberCount) || 1 }).map(
+                      (_, index) => (
+                        <User
+                          key={index}
+                          className="w-3.5 h-3.5 md:w-4 md:h-4 text-emerald-400/80 shrink-0 -ml-0.5 first:ml-0"
+                        />
+                      ),
+                    )}
+                    {/* 텍스트 보조 표시 (선택사항, 지우셔도 됩니다) */}
+                    <span className="text-emerald-400 font-medium ml-1">
+                      ({memberCount}명)
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -114,7 +156,7 @@ const ProjectCard = ({
                 </div>
               </div>
 
-              {/* 작업 기여도 */}
+              {/* 수행 역할 */}
               <div className="space-y-3 pt-2">
                 <div className="flex items-center gap-2 text-white font-semibold text-sm md:text-base">
                   <CheckCircle2 className="w-4 h-4 text-purple-400" />
@@ -140,11 +182,11 @@ const ProjectCard = ({
       {/* --- 전체 화면 이미지 모달 (Lightbox) --- */}
       {isModalOpen && (
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-sm p-4 md:p-10 transition-all animate-in fade-in duration-300"
+          className="fixed inset-0 z-131 flex items-center justify-center bg-black/55 backdrop-blur-sm p-4 md:p-10 transition-all animate-in fade-in duration-300"
           onClick={() => setIsModalOpen(false)}
         >
           <button
-            className="absolute top-20 right-4 md:top-8 md:right-8 p-2.5 md:p-3 bg-white/10 hover:bg-white/20 rounded-full text-white transition-colors z-[110]"
+            className="absolute top-24 right-6 md:top-10 cursor-pointer md:right-10 p-3 bg-white/10 hover:bg-white/20 rounded-full text-white transition-colors z-[210]"
             onClick={() => setIsModalOpen(false)}
           >
             <X className="w-6 h-6 md:w-8 md:h-8" />
@@ -157,11 +199,14 @@ const ProjectCard = ({
             <img
               src={imageSrc}
               alt={title}
-              className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl animate-in zoom-in-95 duration-300"
+              className="max-w-full max-h-[70vh] object-contain rounded-lg shadow-2xl animate-in zoom-in-95 duration-300"
             />
-            <div className="mt-4 text-center">
-              <p className="text-white text-base md:text-xl font-bold">
+            <div className="mt-6 text-center">
+              <p className="text-white text-lg md:text-2xl font-bold">
                 {title} 이미지 상세보기
+              </p>
+              <p className="text-gray-400 text-sm md:text-base mt-2">
+                창을 닫으려면 배경을 클릭하거나 X 버튼을 누르세요.
               </p>
             </div>
           </div>

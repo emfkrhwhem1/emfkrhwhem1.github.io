@@ -76,18 +76,17 @@ function ExperiencePage() {
             return (
               <div
                 key={index}
-                className={`relative flex w-full items-center 
-                  /* 모바일: 가로 중앙 정렬 / PC(md): 지그재그 정렬 */
-                  justify-center md:${isRightAligned ? "justify-end" : "justify-start"}
-                `}
+                className={`relative flex w-full items-center justify-center 
+        /* ✅ md: 또는 lg: 접두사를 삼항 연산자 안으로 넣어야 정확히 작동합니다 */
+        ${isRightAligned ? "md:justify-end" : "md:justify-start"}
+      `}
               >
                 {/* 2. 중앙 점 (Dot) */}
-                {/* hidden md:block -> 모바일에서 숨김 */}
                 <div className="hidden lg:block absolute left-1/2 top-1/2 w-4 h-4 rounded-full bg-purple -translate-x-1/2 -translate-y-1/2 ring-4 ring-[#030014] z-20 shadow-[0_0_15px_rgba(168,85,247,0.5)]" />
 
                 {/* 3. 경험 카드 섹션 */}
-                {/* 모바일: 너비 100% / PC(md): 45% 정밀 제어 */}
-                <div className="w-full lg:w-[45%] lg:w-[42%]">
+                {/* ✅ 중복된 너비 클래스를 하나로 정리했습니다. */}
+                <div className="w-full lg:w-[45%]">
                   <ExperienceCard {...exp} />
                 </div>
               </div>
